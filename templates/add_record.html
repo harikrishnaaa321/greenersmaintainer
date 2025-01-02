@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <form action="{{ url_for('add_record') }}" method="POST" class="p-3 border rounded" style="max-width: 380px; margin: auto;"><h2>Add Crop Sale Record</h2>
+        <div class="mb-3">
+            <label for="buyer_name" class="form-label">Buyer's Name</label>
+            <input type="text" class="form-control" id="buyer_name" name="buyer_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="crop_name" class="form-label">Crop Name</label>
+            <input type="text" class="form-control" id="crop_name" name="crop_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity (kg)</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" step="0.01" required>
+        </div>
+        <div class="mb-3">
+            <label for="price_per_kg" class="form-label">Price per kg</label>
+            <input type="number" class="form-control" id="price_per_kg" name="price_per_kg" step="0.01" required>
+        </div>
+        <div class="mb-3">
+            <label for="total_bill" class="form-label">Total Bill</label>
+            <input type="number" class="form-control" id="total_bill" name="total_bill" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="amount_paid" class="form-label">Amount Paid</label>
+            <input type="number" class="form-control" id="amount_paid" name="amount_paid" step="0.01" required>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Submit</button>
+    </form>
+
+    <script>
+        // Auto-calculate total bill and restrict amount paid
+        const quantityInput = document.getElementById('quantity');
+        const priceInput = document.getElementById('price_per_kg');
+        const totalBillInput = document.getElementById('total_bill');
+        const amountPaidInput = document.getElementById('amount_paid');
+
+        function calculateTotalBill() {
+            const quantity = parseFloat(quantityInput.value);
+            const price = parseFloat(priceInput.value);
+            if (!isNaN(quantity) && !isNaN(price)) {
+                const totalBill = (quantity * price).toFixed(2);
+                totalBillInput.value = totalBill;
+                amountPaidInput.max = totalBill; // Restrict amount paid to not exceed total bill
+            }
+        }
+
+        quantityInput.addEventListener('input', calculateTotalBill);
+        priceInput.addEventListener('input', calculateTotalBill);
+
+        amountPaidInput.addEventListener('input', function () {
+            const amountPaid = parseFloat(amountPaidInput.value);
+            const totalBill = parseFloat(totalBillInput.value);
+            if (!isNaN(amountPaid) && !isNaN(totalBill) && amountPaid > totalBill) {
+                amountPaidInput.value = totalBill; // Restrict input to the total bill amount
+            }
+        });
+    </script>
+{% endblock %}

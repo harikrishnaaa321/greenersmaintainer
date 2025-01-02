@@ -1,0 +1,137 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Body background with a cooler color scheme */
+body {
+  background: linear-gradient(135deg, #6a4c93, #4e92c9);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+/* Signup box style */
+.signup-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  transition: width 0.3s ease;
+}
+
+/* On laptop screen or above, increase the width */
+@media (min-width: 768px) {
+  .signup-box {
+      max-width: 400px; /* Increase width for larger screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .signup-box {
+      max-width: 500px; /* Increase width for larger laptop screens */
+  }
+}
+
+/* Logo style */
+.logo {
+  width: 80px; /* Adjust size */
+  height: 80px; /* Adjust size */
+  border-radius: 50%; /* Makes it circular */
+  margin-bottom: 20px;
+  object-fit: cover; /* Ensures the image fits well */
+}
+
+h2 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-control {
+  border-radius: 15px;
+  padding: 10px;
+  border: 2px solid #ddd;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #dd0d0d;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-color: #ffe600;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.btn-custom {
+  background-color: #fbb034;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  font-size: 1.1rem;
+  padding: 12px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #f99b1f;
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(255, 165, 0, 0.4);
+}
+
+.signup-box .help-text {
+  margin-top: 15px;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.help-text a {
+  color: #ffe600;
+  text-decoration: none;
+}
+
+.help-text a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .signup-box {
+      padding: 30px;
+  }
+
+  h2 {
+      font-size: 1.7rem;
+  }
+
+  .form-control {
+      font-size: 1rem;
+  }
+
+  .btn-custom {
+      font-size: 1rem;
+  }
+}

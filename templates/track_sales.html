@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Track Your Sales</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Buyer Name</th>
+                <th>Crop Name</th>
+                <th>Quantity (kg)</th>
+                <th>Price per kg</th>
+                <th>Total Bill</th>
+                <th>Amount Paid</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in sales_records %}
+                <tr>
+                    <td>{{ record.get('buyer_name', 'N/A') }}</td>
+                    <td>{{ record.get('crop_name', 'N/A') }}</td>
+                    <td>{{ record.get('quantity', 'N/A') }}</td>
+                    <td>{{ record.get('price_per_kg', 'N/A') }}</td>
+                    <td>{{ (record.get('quantity', 0) | float) * (record.get('price_per_kg', 0) | float) }}</td>
+                    <td>{{ record.get('amount_paid', 'N/A') }}</td>
+                    <td>
+                        {% set total_bill = (record.get('quantity', 0) | float) * (record.get('price_per_kg', 0) | float) %}
+                        {% if record.get('amount_paid', 0) < total_bill %}
+                            <span class="text-danger">Pending</span>
+                        {% else %}
+                            <span class="text-success">Paid</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ record.get('date').strftime('%Y-%m-%d %H:%M:%S') if record.get('date') else 'N/A' }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

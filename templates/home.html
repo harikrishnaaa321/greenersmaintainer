@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to Greeners Maintainer!</h1>
+        <p class="lead">Track your crop sales directly and manage your farming business efficiently.</p>
+        <hr class="my-4">
+        <p>Total Sales: <strong>₹{{ total_sales | round(2) }}</strong></p>
+        <p>Total Crops Sold: <strong>{{ total_crops_sold }}kg</strong></p>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('add_record') }}" role="button">Add New Record</a>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('track_sales') }}" role="button">Track Sales</a>
+    </div>
+
+    <div id="stats" class="text-center">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card bg-light shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Crops Sold</h5>
+                        <p class="card-text">{{ total_crops_sold }}kg</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Earnings</h5>
+                        <p class="card-text"> ₹ {{ total_sales | round(2) }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Pending Sales</h5>
+                        <p class="card-text">{{ pending_sales }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        gsap.from("#stats", { opacity: 0, duration: 1, delay: 1 });
+    </script>
+{% endblock %}

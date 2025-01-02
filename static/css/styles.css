@@ -1,0 +1,25 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.jumbotron {
+  background-color: #28a745;
+  color: white;
+}
+
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+footer {
+  background-color: #343a40;
+  color: white;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding: 10px 0;
+}
